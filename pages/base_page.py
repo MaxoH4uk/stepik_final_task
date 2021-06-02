@@ -5,6 +5,7 @@ from selenium.common.exceptions import TimeoutException
 from .locators import BasePageLocators
 from .locators import MainPageLocators
 
+
 class BasePage():
     def __init__(self, browser, url, timeout=1):
         self.browser = browser
@@ -47,6 +48,9 @@ class BasePage():
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
+
+    def should_be_basket_button(self):
+        assert self.is_element_present_in_basket(*MainPageLocators.BASKET_LINK), "Basket link is not presented"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
