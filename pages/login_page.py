@@ -8,6 +8,17 @@ class LoginPage(BasePage):
         self.should_be_login_form()
         self.should_be_login_url()
 
+    def register_new_user(self, email, password):
+        email_field = self.find_element(*LoginPageLocators.EMAIL_FIELD)
+        email_field.send_keys(email)
+        password_field = self.find_element(*LoginPageLocators.PASSWORD_FIELD)
+        password_field.send_keys(password)
+        re_password_field = self.find_element(*LoginPageLocators.RE_PASSWORD_FIELD)
+        re_password_field.send_keys(password)
+        register_button = self.find_element(*LoginPageLocators.REGISTER_BUTTON)
+        register_button.click()
+
+
     def should_be_login_form(self):
         assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login form is not presented"
 
