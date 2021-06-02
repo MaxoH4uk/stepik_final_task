@@ -1,17 +1,22 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-import math
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from .locators import BasePageLocators
-
+from .locators import MainPageLocators
+from .locators import BasketPageLocators
+import math
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
+
+    def go_to_basket_page(self):
+        link = self.browser.find_element(*MainPageLocators.BASKET_LINK)
+        link.click()
 
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -41,6 +46,15 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def should_be_basket_button(self):
+        assert self.is_element_present(*MainPageLocators.BASKET_LINK), "Basket link is not presented"
+
+    def should_be_empty_basket(self):
+        assert self.is_not_element_present(*BasketPageLocators.PRODUCTS_IN_BASKET), "There are items in the basket"
+
+    def should_be_empty_basket_text(self):
+        assert self.is_element_present(*BasketPageLocators.EMPTY_BASKET_TEXT), "Text 'Your basket is empty' is not present"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
