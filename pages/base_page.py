@@ -5,7 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from .locators import BasePageLocators
 from .locators import MainPageLocators
-from .locators import BasketPageLocators
 import math
 
 class BasePage():
@@ -51,10 +50,10 @@ class BasePage():
         assert self.is_element_present(*MainPageLocators.BASKET_LINK), "Basket link is not presented"
 
     def should_be_empty_basket(self):
-        assert self.is_not_element_present(*BasketPageLocators.PRODUCTS_IN_BASKET), "There are items in the basket"
+        assert self.is_not_element_present(*BasePageLocators.PRODUCTS_IN_BASKET), "There are items in the basket"
 
     def should_be_empty_basket_text(self):
-        assert self.is_element_present(*BasketPageLocators.EMPTY_BASKET_TEXT), "Text 'Your basket is empty' is not present"
+        assert self.is_element_present(*BasePageLocators.EMPTY_BASKET_TEXT), "Text 'Your basket is empty' is not present"
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
