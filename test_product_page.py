@@ -26,6 +26,7 @@ class TestUserAddToBasketFromProductPage():
         page.should_not_be_success_message()
 
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         page = ProductPage(browser, link)
@@ -36,6 +37,19 @@ class TestUserAddToBasketFromProductPage():
         page.should_be_message_basket_total()
 
 
+@pytest.mark.need_review
+def test_guest_can_add_product_to_basket(browser):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+    page.add_to_basket()
+    page.solve_quiz_and_get_code()
+    page.should_be_message_about_product_added_to_basket()
+    page.should_be_message_basket_total()
+
+
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     product_page = ProductPage(browser, link)
@@ -46,6 +60,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     login_page.should_be_login_form()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = BasketPage(browser, link)
