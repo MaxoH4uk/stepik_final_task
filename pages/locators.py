@@ -15,10 +15,10 @@ class BasketPageLocators():
 
 
 class LoginPageLocators():
-    EMAIL_FIELD = (By.CSS_SELECTOR, "#id_registration-email")
+    EMAIL_FIELD = (By.XPATH, "/html/body/div[2]/div/div[2]/div[2]/div/div[2]/form/div[1]/div/input")
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
     PASSWORD_FIELD = (By.CSS_SELECTOR, "#id_registration-password1")
-    REGISTER_BUTTON = (By.CSS_SELECTOR, "@name='registration_submit'")
+    REGISTER_BUTTON = (By.CSS_SELECTOR, "[name='registration_submit']")
     REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
     RE_PASSWORD_FIELD = (By.CSS_SELECTOR, "#id_registration-password2")
 
